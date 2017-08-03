@@ -3,9 +3,9 @@ import smtplib
 #t-mobile: number@tmomail.net
 
 emailServer = "smtp.gmail.com"
-emailSender = "andycatpione@gmail.com"
-emailSenderPass = "raspberrypi1997"
-emailReceiver = "15622902096@tmomail.net"
+emailSender = "johndoe@gmail.com"
+emailSenderPass = "johndoepassword"
+emailReceiver = "name@email"
 
 smtpserver = smtplib.SMTP(emailServer, 587)
 smtpserver.ehlo()
