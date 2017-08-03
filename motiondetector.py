@@ -2,11 +2,10 @@ import RPi.GPIO as GPIO
 import time
 
 sensor = 16
+sensorState = 0
 
 GPIO.setmode(GPIO.BOARD) #sets up pin numbering to BOARD
 GPIO.setup(sensor, GPIO.IN) #initializes channel of sensor as an input
-
-sensorState = 0
 
 try:
     while True:
