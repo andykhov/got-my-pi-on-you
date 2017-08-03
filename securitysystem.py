@@ -32,7 +32,7 @@ try:
         sensorState = GPIO.input(sensor) #sensorState refers to signal sent from sensor
         print(sensorState + "\r")
         if sensorState == GPIO.HIGH: #check if sensor sends a signal
-            smtpconnection.sendmail(emailSender, emailReceiver, message)
+            smtpconnection.sendmail(emailSender, emailReceiver, message + getTime())
             sensorState = GPIO.LOW
             time.sleep(7)
         time.sleep(0.1)
@@ -42,3 +42,6 @@ finally:
     print("preparing to exit")
     smtpserver.quit()
     GPIO.cleanup();
+
+def getTime():
+    return (time.strftime("%m") + "/" + time.strftime("%d") + ", " + time.strftime("%I") + ":" + time.strftime("%M") + ":" + time.strftime("%S"))
