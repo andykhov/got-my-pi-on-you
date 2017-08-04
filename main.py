@@ -17,12 +17,11 @@ def main():
 
     try:
         while True:
-            time.sleep(0.1)
+            time.sleep(3)
             sensorState = GPIO.input(sensor)
             if sensorState == GPIO.HIGH: #check if sensor sends a signal
                 myEmail.sendEmail("khovandyak@gmail.com", "Intruder\n"+time.strftime("Date: %x  Time(24 Hour): %X"))
-                time.sleep(7) #give sensor time to refresh signal
-            time.sleep(0.1)
+                time.sleep(5) #give sensor time to refresh signal
     except KeyboardInterrupt:
         pass
     finally:
