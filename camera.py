@@ -1,7 +1,7 @@
 import pygame
 import pygame.camera
 
-class webcam:
+class Webcam:
 
     webcamCount = 0;
 
