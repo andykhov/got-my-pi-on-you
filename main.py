@@ -16,18 +16,18 @@ def main():
     myEmail.initSMTP("smtp.gmail.com", 587) #connect to gmail's SMTP on port 587
 
     #setup webcam
-    myWebcam = Webcam("/dev/sda0", [1280,720], "RGB")
+    myWebcam = Webcam("/dev/video0", [640,480], "RGB")
 
     print("listening to sensor...\n")
 
     try:
         while True:
-            time.sleep(3)
+            time.sleep(2)
             sensorState = GPIO.input(sensor)
             if sensorState == GPIO.HIGH: #check if sensor sends a signal
-                date = time.strf("Date: %x  Time(24 Hour): %X")
-                myEmail.sendEmail("recipientEmail", "Intruder\n"+date)
-                myWebcam.takePicture(date + ".jpg")
+                date = time.strftime("Date: %x Time(24Hour): %X")
+                myEmail.sendEmail("recepient email", "Intruder\n"+date)
+                myWebcam.takePicture("intruder.jpg")
                 time.sleep(60) #give sensor time to refresh signal
     except KeyboardInterrupt:
         pass
@@ -36,6 +36,7 @@ def main():
         GPIO.cleanup() #exit GPIO cleanly
         myWebcam.stopCam()
         myEmail.closeSMTP() #close connection to SMTP server
+        time.sleep(5)
 
 if __name__ == '__main__':
     main()

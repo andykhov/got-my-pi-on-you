@@ -6,6 +6,7 @@ class Webcam:
     webcamCount = 0;
 
     def __init__(self, device, resolution, colorspace):
+        pygame.camera.init()
         self.cam = pygame.camera.Camera(device, (resolution[0], resolution[1]), colorspace)
         self.cam.start()
 
