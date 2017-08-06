@@ -14,9 +14,12 @@ def main():
     #setup email, see "mail.py" for more information
     myEmail = email("myemail", "mypassword") #return an email object
     myEmail.initSMTP("smtp.gmail.com", 587) #connect to gmail's SMTP on port 587
+    subject = "Intruder Alert"
+    recipient = "recipient@email"
 
     #setup webcam
     myWebcam = Webcam("/dev/video0", [640,480], "RGB")
+    imgPath = "images/intruder.jpg"
 
     print("listening to sensor...\n")
 
@@ -26,9 +29,10 @@ def main():
             sensorState = GPIO.input(sensor)
             if sensorState == GPIO.HIGH: #check if sensor sends a signal
                 date = time.strftime("Date: %x Time(24Hour): %X")
-                myEmail.sendEmail("recepient email", "Intruder\n"+date)
-                myWebcam.takePicture("intruder.jpg")
-                time.sleep(60) #give sensor time to refresh signal
+                myWebcam.takePicture(imgPath)
+                myEmail.sendEmail(recipient, subject, date, imgPath)
+                time.sleep(60) #give sensor time to refresh signal & prevent
+                #subsequent emails
     except KeyboardInterrupt:
         pass
     finally:
