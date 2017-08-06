@@ -25,13 +25,13 @@ class email:
         msg["From"] = self.address
         msg["To"] = recipient
         msg.attach(MIMEText(message))
-
+        
         imgfp = open(imgPath, "rb")
         img = MIMEImage(imgfp.read())
         imgfp.close()
         msg.attach(img)
 
-        self.smtpconnection.sendmail(self.address, recipient, message)
+        self.smtpconnection.sendmail(self.address, recipient, msg.as_string())
 
     def closeSMTP(self):
         self.smtpconnection.close()
