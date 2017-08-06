@@ -21,5 +21,6 @@ Raspberry Pi Mini Security System
 * time
 * mail
   * smtplib (module to interface with an smtp server)
+  * MIMEText, MIMEImage, MIMEMultiport
 * camera
   * pygame
