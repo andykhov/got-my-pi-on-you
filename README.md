@@ -7,9 +7,9 @@ I created a raspberry pi mini security system in an effort to let me know whenev
 * Logitech C270 USB Webcam (any usb webcam can be used)
 * Passive Infrared Sensor (aka PIR)
 
-![PIR Sensor](i.imgur.com/KFHnsMW.jpg)
-![Logitech C270](i.imgur.com/N0FCvb1.jpg)
-![Raspberry Pi 3 Model B](i.imgur.com/7inW1bQ.jpg)
+![PIR Sensor](http://i.imgur.com/KFHnsMW.jpg)
+![Logitech C270](http://i.imgur.com/N0FCvb1.jpg)
+![Raspberry Pi 3 Model B](http://i.imgur.com/7inW1bQ.jpg)
 
 
 ## How it works
