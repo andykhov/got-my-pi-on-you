@@ -1,7 +1,7 @@
-from mail import email
-from camera import Webcam
+import camera
 import RPi.GPIO as GPIO
 import time
+from mail import email
 
 def main():
     sensor = 16 #PIR sensor set at GPIO pin 16
@@ -17,11 +17,10 @@ def main():
     subject = "Intruder Alert"
     recipient = "recipient@email"
 
-    #setup webcam
-    myWebcam = Webcam("/dev/video0", [640,480], "RGB")
+    #image file path for webcam screen capture
     imgPath = "images/intruder.jpg"
 
-    print("listening to sensor...\n")
+    print("listening to sensor...")
 
     try:
         while True:
@@ -29,18 +28,16 @@ def main():
             sensorState = GPIO.input(sensor)
             if sensorState == GPIO.HIGH: #check if sensor sends a signal
                 date = time.strftime("Date: %x Time(24Hour): %X")
-                myWebcam.takePicture(imgPath)
+                camera.takePicture(0, imgPath)
                 myEmail.sendEmail(recipient, subject, date, imgPath)
-                time.sleep(60) #give sensor time to refresh signal & prevent
-                #subsequent emails
+                time.sleep(60) 
+
     except KeyboardInterrupt:
         pass
     finally:
-        print("exiting...\n")
+        print("exiting...")
         GPIO.cleanup() #exit GPIO cleanly
-        myWebcam.stopCam()
         myEmail.closeSMTP() #close connection to SMTP server
-        time.sleep(5)
 
 if __name__ == '__main__':
     main()
