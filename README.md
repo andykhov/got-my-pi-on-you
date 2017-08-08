@@ -1,7 +1,7 @@
 # got-my-pi-on-you
 This is my raspberry pi mini "security system". I initially created this project
 in an effort to let me know whenever my mom entered my room whenever
-I'm not home (she's a bit nosy). My project uses a passive infrared sensor
+I'm not home (she's a bit nosy haha). My project uses a passive infrared sensor
 to detect an intruder in my room. The pi will then have my webcam take a 
 picture and send an email to me with the date of time and picture attached.
 
@@ -27,4 +27,4 @@ If you have any questions/problems, let me know!
   * smtplib (module to interface with an smtp server)
   * MIMEText, MIMEImage, MIMEMultiport
 * camera
-  * pygame
+  * opencv
