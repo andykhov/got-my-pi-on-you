@@ -7,9 +7,13 @@ def main():
     sensor = 16 #PIR sensor set at GPIO pin 16
     sensorState = 0  #sensorState refers to signal sent from 
 
+    print("preparing sensor")
+
     #setup Pi's GPIO
     GPIO.setmode(GPIO.BOARD) #sets up GPIO's pin numbering to BOARD
     GPIO.setup(sensor, GPIO.IN) #inits pin of sensor as input
+
+    print("preparing email")
 
     #setup email, see "mail.py" for more information
     myEmail = email("myemail", "mypassword") #return an email object
@@ -26,10 +30,14 @@ def main():
         while True:
             time.sleep(2)
             sensorState = GPIO.input(sensor)
+            print(sensorState)
             if sensorState == GPIO.HIGH: #check if sensor sends a signal
                 date = time.strftime("Date: %x Time(24Hour): %X")
+                print("taking pic")
                 camera.takePicture(0, imgPath)
+                print("sending email")
                 myEmail.sendEmail(recipient, subject, date, imgPath)
+                print("sent")
                 time.sleep(60) 
 
     except KeyboardInterrupt:
