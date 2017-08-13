@@ -6,7 +6,7 @@ def takePicture(device, imgPath):
     webcam = cv2.VideoCapture(device) #returns a VideoCapture obj
 
     #poll until webcam is opened and ready
-    while (webcam.isOpened()):
+    while (webcam.isOpened() == False):
         webcam.open(device)
         time.sleep(1)
 
