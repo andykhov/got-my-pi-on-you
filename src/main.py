@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from mail import email
+from mail import Email
 from camera import Webcam
 
 def main():
@@ -22,7 +22,7 @@ def main():
     print("preparing email")
 
     #setup email, see "mail.py" for more information
-    myEmail = email("myemail", "mypassword") #return an email object
+    myEmail = Email("myemail", "mypassword") #return an email object
     myEmail.initSMTP("smtp.gmail.com", 587) #connect to gmail's SMTP on port 587
     subject = "Intruder Alert"
     recipient = "recipient@email"
