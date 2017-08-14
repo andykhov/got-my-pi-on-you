@@ -31,3 +31,4 @@ If you have any questions/problems, let me know!
   * MIMEText, MIMEImage, MIMEMultiport
 * camera
   * opencv
+  * numpy
