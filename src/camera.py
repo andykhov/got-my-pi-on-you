@@ -1,16 +1,18 @@
 import cv2
 import numpy
-import time
 
-def takePicture(device, imgPath):
-    webcam = cv2.VideoCapture(device) #returns a VideoCapture obj
+class Webcam:
 
-    #poll until webcam is opened and ready
-    while (webcam.isOpened() == False):
-        webcam.open(device)
-        time.sleep(1)
+    def __init__(self, device, fps):
+        self.cam = cv2.VideoCapture(device)
+        self.fps = fps
+        while (self.cam.isOpened() == False):
+            self.cam.open(device)
 
-    ret, frame = webcam.read() #reads current fram from webcam
-    cv2.imwrite(imgPath, frame) #save frame to imgPath
+    def takePicture(self, imgPath):
+        for i in range(self.fps):
+            retval, frame = self.cam.read()
+        cv2.imwrite(imgPath, frame)
 
-    webcam.release()
+    def closeWebcam(self):
+        self.cam.release()
